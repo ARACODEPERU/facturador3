@@ -104,6 +104,21 @@ class PurchaseOrderController extends Controller
 
 
     public function item_tables()
+{
+    $items = $this->table('items');
+    $affectation_igv_types = AffectationIgvType::whereActive()->get();
+    $system_isc_types = SystemIscType::whereActive()->get();
+    $price_types = PriceType::whereActive()->get();
+    $discount_types = ChargeDiscountType::whereType('discount')->whereLevel('item')->get();
+    $charge_types = ChargeDiscountType::whereType('charge')->whereLevel('item')->get();
+    $attribute_types = AttributeType::whereActive()->orderByDescription()->get();
+    $warehouses = Warehouse::all();
+
+    return compact('items', 'affectation_igv_types', 'system_isc_types', 'price_types',
+                    'discount_types', 'charge_types', 'attribute_types', 'warehouses');
+}
+/* codigo anterior
+public function item_tables()
     {
 
         $items = $this->table('items');
@@ -118,7 +133,7 @@ class PurchaseOrderController extends Controller
         return compact('items', 'categories', 'affectation_igv_types', 'system_isc_types', 'price_types',
                         'discount_types', 'charge_types', 'attribute_types','warehouses');
     }
-
+*/
 
     public function record($id)
     {
@@ -301,7 +316,7 @@ class PurchaseOrderController extends Controller
         if (!$purchase_order) throw new Exception("El código {$external_id} es inválido, no se encontro la orden de compra relacionada");
 
         return Storage::disk('tenant')->download('purchase_order_attached'.DIRECTORY_SEPARATOR.$purchase_order->upload_filename);
-        
+
     }
 
     public function toPrint($external_id, $format) {
