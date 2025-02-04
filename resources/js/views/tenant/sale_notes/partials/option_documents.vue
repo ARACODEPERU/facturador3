@@ -3,7 +3,7 @@
         <el-dialog :title="titleDialog" :visible="showDialog" @open="create" width="30%"
                 :close-on-click-modal="false"
                 :close-on-press-escape="false"
-                :show-close="false">  
+                :show-close="false">
             <div class="row">
                 <div class="col-lg-8">
                     <div class="form-group" :class="{'has-danger': errors.document_type_id}">
@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="col-lg-8 mt-3">
-                    <div class="form-group" :class="{'has-danger': errors.dipatch_id}"> 
+                    <div class="form-group" :class="{'has-danger': errors.dipatch_id}">
                         <!-- <label class="control-label">Tipo comprobante</label> -->
                         <el-checkbox  v-model="generate_dispatch">Generar Guía Remisión</el-checkbox>
                         <el-select v-model="dispatch_id" popper-class="el-select-document_type" filterable  class="border-left rounded-left border-info" v-if="generate_dispatch">
@@ -45,8 +45,8 @@
                     </div>
                 </div>
             </div>
-            <span slot="footer" class="dialog-footer"> 
-                <el-button @click="clickClose">Cerrar</el-button>         
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="clickClose">Cerrar</el-button>
                 <el-button class="submit" type="primary" @click="submit" :loading="loading_submit" v-if="flag_generate">Generar</el-button>
             </span>
 
@@ -122,7 +122,7 @@
                     customer_id: null,
                     currency_type_id: null,
                     purchase_order: null,
-                    exchange_rate_sale: 0,
+                    exchange_rate_sale: 0.01,
                     total_prepayment: 0,
                     total_charge: 0,
                     total_discount: 0,
@@ -163,7 +163,7 @@
                 this.changeDocumentType()
             },
             async submit() {
-                
+
                 if(this.generate_dispatch){
                     if(!this.dispatch_id){
                         return this.$message.error('Debe seleccionar una guía base')
@@ -259,10 +259,10 @@
                         this.titleDialog = 'Nota de venta registrada: '+this.form.identifier
                     })
 
-                    
+
                 await this.$http.get(`/${this.resource}/dispatches`)
                     .then(response => {
-                        this.dispatches = response.data 
+                        this.dispatches = response.data
                     })
             },
             changeDocumentType() {

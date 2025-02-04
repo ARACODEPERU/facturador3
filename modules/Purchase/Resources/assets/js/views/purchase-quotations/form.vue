@@ -261,7 +261,8 @@
             changeDateOfIssue() {
                 // this.form.date_of_due = this.form.date_of_issue > this.form.date_of_due ? this.form.date_of_issue:null
                 // this.searchExchangeRateByDate(this.form.date_of_issue).then(response => {
-                //     this.form.exchange_rate_sale = response
+                //     //this.form.exchange_rate_sale = response
+                    
                 // })
             }, 
             allCustomers() {

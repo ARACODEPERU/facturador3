@@ -91,7 +91,7 @@
                 ></small>
               </div>
             </div>
-            
+
             <div class="col-md-3">
               <div class="form-group" :class="{'has-danger': errors.currency_type_id}">
                 <label class="control-label">Moneda</label>
@@ -180,7 +180,7 @@
                 ></small>
               </div>
             </div> -->
-            
+
                         <div class="col-md-12 col-lg-12 mt-2">
 
                             <table>
@@ -193,7 +193,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="(row, index) in form.payments" :key="index"> 
+                                    <tr v-for="(row, index) in form.payments" :key="index">
                                         <td>
                                             <div class="form-group mb-2 mr-2">
                                                 <el-select v-model="row.payment_method_type_id" @change="changePaymentMethodType(true,index)">
@@ -211,16 +211,16 @@
                                                 <el-input v-model="row.payment"></el-input>
                                             </div>
                                         </td>
-                                        <td class="series-table-actions text-center"> 
+                                        <td class="series-table-actions text-center">
                                             <button  type="button" class="btn waves-effect waves-light btn-xs btn-danger" :disabled="index==0" @click.prevent="clickCancel(index)">
                                                 <i class="fa fa-trash"></i>
                                             </button>
-                                        </td> 
+                                        </td>
                                         <br>
                                     </tr>
-                                </tbody> 
-                            </table> 
-                        
+                                </tbody>
+                            </table>
+
 
                         </div>
           </div>
@@ -416,7 +416,7 @@ export default {
                 payment_method_type_id: "01",
                 currency_type_id: null,
                 purchase_order: null,
-                exchange_rate_sale: 0,
+                exchange_rate_sale: 0.01,
                 total_prepayment: 0,
                 total_charge: 0,
                 total_discount: 0,
@@ -465,7 +465,8 @@ export default {
             changeDateOfIssue() {
               this.form.date_of_due = this.form.date_of_issue;
               this.searchExchangeRateByDate(this.form.date_of_issue).then(response => {
-                this.form.exchange_rate_sale = response;
+                //this.form.exchange_rate_sale = response
+                    ;
               });
             },
             changeDocumentType() {
@@ -575,7 +576,7 @@ export default {
                 }
               }
             },
-    
+
             clickCancel(index) {
                 this.form.payments.splice(index, 1);
             },
@@ -589,9 +590,9 @@ export default {
                     reference: null,
                     payment: 0,
                 });
-            },   
+            },
             validate_payments(){
- 
+
                 let error_by_item = 0
                 let acum_total = 0
 
@@ -607,7 +608,7 @@ export default {
 
             },
             async submit() {
-              
+
               // console.log(this.form)
 
               let validate = await this.validate_payments()
@@ -687,7 +688,7 @@ export default {
                   this.form.payments[0].payment_method_type_id = this.form.purchase_order.payment_method_type_id
                   this.form.payments[0].payment = this.form.purchase_order.total
                   this.form.total = this.form.purchase_order.total
-                  
+
                   this.form.items.forEach((it)=>{
                     it.warehouse_id = warehouse.id
                   })

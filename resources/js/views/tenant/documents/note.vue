@@ -265,7 +265,7 @@
                     customer_id: this.document.customer_id,
                     currency_type_id: this.document.currency_type_id,
                     purchase_order: null,
-                    exchange_rate_sale: 0,
+                    exchange_rate_sale: 0.01,
                     total_prepayment:this.document.total_prepayment,
                     total_charge: this.document.total_charge,
                     total_discount: this.document.total_discount,
@@ -348,7 +348,8 @@
             },
             changeDateOfIssue() {
                 this.searchExchangeRateByDate(this.form.date_of_issue).then(response => {
-                    this.form.exchange_rate_sale = response
+                    //this.form.exchange_rate_sale = response
+                    
                 })
             },
             addRow(row) {

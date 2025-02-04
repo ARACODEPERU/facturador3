@@ -272,7 +272,7 @@
                     time_of_issue: moment().format('HH:mm:ss'),
                     supplier_id: null,
                     currency_type_id: null,
-                    exchange_rate_sale: 0,
+                    exchange_rate_sale: 0.01,
                     total: 0,
                     items: [],
                     payments: [],
@@ -294,7 +294,8 @@
             changeDateOfIssue() {
                 this.form.date_of_due = this.form.date_of_issue
                 this.searchExchangeRateByDate(this.form.date_of_issue).then(response => {
-                    this.form.exchange_rate_sale = response
+                    //this.form.exchange_rate_sale = response
+                    
                 })
             },
             clickCancel(index) {

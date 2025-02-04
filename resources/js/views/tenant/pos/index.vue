@@ -467,7 +467,7 @@
             all_items: [],
             customers: [],
             affectation_igv_types: [],
-            exchange_rate_sale: 0,
+            exchange_rate_sale: 0.01,
             all_customers: [],
             establishment: null,
             currency_type: {},
@@ -770,7 +770,7 @@
               customer_id: null,
               currency_type_id: "PEN",
               purchase_order: null,
-              exchange_rate_sale: 0,
+              exchange_rate_sale: 0.01,
               total_prepayment: 0,
               total_charge: 0,
               total_discount: 0,
@@ -1049,14 +1049,16 @@
           },
           changeDateOfIssue() {
             // this.searchExchangeRateByDate(this.form.date_of_issue).then(response => {
-            //     this.form.exchange_rate_sale = response
+            //     //this.form.exchange_rate_sale = response
+                    
             // })
 
 
           },
           changeExchangeRate(){
             this.searchExchangeRateByDate(this.form.date_of_issue).then(response => {
-                this.form.exchange_rate_sale = response
+                //this.form.exchange_rate_sale = response
+                    
             })
           },
           async getTables() {

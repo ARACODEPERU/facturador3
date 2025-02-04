@@ -291,11 +291,11 @@
         },
         methods: {
 
-            handleRemove(file, fileList) {                
+            handleRemove(file, fileList) {
                 this.form.upload_filename = null
                 this.form.temp_path = null
                 this.fileList = []
-            }, 
+            },
             onSuccess(response, file, fileList) {
                 // console.log(response, file, fileList)
                 this.fileList = fileList
@@ -464,7 +464,7 @@
                     payment_method_type_id:'01',
                     currency_type_id: null,
                     purchase_order: null,
-                    exchange_rate_sale: 0,
+                    exchange_rate_sale: 0.01,
                     total_prepayment: 0,
                     total_charge: 0,
                     total_discount: 0,
